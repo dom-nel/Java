@@ -11,24 +11,45 @@ public class LinkedList{
       this.length = 1;
    }//constructor end 
    
-   public void append(int value){
+   public Node append(int value){
       Node newNode = new Node(value);
       if(head == null)
       {
          
          this.head = newNode;
-         this.tail = newNode;
-         this.length = 1;
+         return head;
       }
-      else{
-         tail.next = newNode;
-         tail = newNode;
-      }
-      length++;
       
+      Node temp = head;
+      
+      while (temp.next != null)
+      {
+         temp = temp.next;
+      }      
+      
+      temp.next = newNode;
+      return head;
       
    
    }// append end
+   
+   public Node get(int index){
+   
+      if(index < 0 || index >= length)
+      {
+         return null;
+      }
+      
+      Node temp = head;
+      for(int i = 0; i < index; i++)
+      {
+         temp = temp.next;
+      }
+      
+      return temp;
+      
+   }//get end 
+   
    
    public void prepend(int value){
       Node newNode = new Node(value);
@@ -45,9 +66,23 @@ public class LinkedList{
          head = newNode;
       }
       length++;
-
+      
+     
    
    }// prepend end
+   
+    public boolean set(int index, int value)
+      {
+         Node temp = get(index);
+         if(temp != null)
+         {
+            temp.value = value;
+            return true;
+         }
+         return false;
+       
+      }
+
    
    public boolean insert(int index, int value){
       return true;
