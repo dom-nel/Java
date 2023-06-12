@@ -84,9 +84,7 @@ public class LinkedList{
       }
 
    
-   public boolean insert(int index, int value){
-      return true;
-   }
+
    
    public Node removeFirst()
    {
@@ -136,6 +134,49 @@ public class LinkedList{
          }
       
    }//remove end
+   
+   public boolean insert(int index, int value)
+   {
+      //wont allow the insert to be a negative number
+      // or greater than the actual size of the list
+      if (index < 0 || index > length)
+      {
+         return false;      
+      }
+      
+      // if the index is the head(0) the function will place the node at the beggining of the list and return true
+      //meaning the node was successfully placed as the head
+      if (index == 0)
+      {
+         prepend(value);
+         return true;
+      }
+      
+      // if the index is the tail(length) the function will place the node at the end of the list and return true
+      //meaning the node was successfully placed as the tail
+      if (index == length)
+      {
+         append(value);
+         return true;
+      }
+      
+      Node newNode = new Node(value);
+      
+      // the temp variable has to be set at the index before the chosen index
+      // so the next pointer before the chosen index is updated connecting to the new node 
+      Node temp = get(index - 1);
+      
+      // The new node next pointer is node pointer to the index in which it replace
+      newNode.next = temp.next;
+      
+      // temp.next points to the new node which is the node before the index replaced
+      temp.next = newNode;
+      
+      // increases the length because a new node was added 
+      length++;
+      
+      return true;
+   }
    
    public void printList(){
       Node temp = head;
