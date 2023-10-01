@@ -44,34 +44,47 @@ import java.util.Scanner;
 
 
 
-public class ArrayListExample{
+public class ArrayListExample
+{
    public static void main(String[] args) 
    {
-       List<List<Integer>> listOfLists = new ArrayList<>();
-       Scanner scnr = new Scanner(System.in);
-       
-       int numberOfLines = scnr.nextInt();
-       
-       for(int i = 0; i < numberOfLines; i++) //creates a loop that will iterate over the list based on the number of lines 
-       {
-         int d = scnr.nextInt(); // grabs the first number of each line to let you know how many numbers are in the first line
+     List<List<Integer>> listOfList = new ArrayList<>();
+     Scanner sc = new Scanner(System.in);
+     
+     System.out.println("How many list will be inside of the list?");
+     int n = sc.nextInt(); // tells you how many list will be inside of the arraylist
+     
+     
+     // Loops over n (which is the orginal arraylist that tells you how many list to loop over)
+     for (int i = 0; i < n; i++)
+     {
+         // this is grabbing the number that starts the line and tell you how many items are inside of that list
+         int d = sc.nextInt();
          
-         for (int j = 0; j < d; j++) // iterates over d
+         List<Integer> list = new ArrayList<>(); // this is the list that will be added to the list of list
+         
+         for (int j = 0; j < d; j++)
          {
-            List<Integer> list = new ArrayList<>();
-            for (int j = 0; j < d; j++)
-            {
-               list.add(sc.nextInt());
-            }
-            listOfList.add(list);
+            list.add(sc.nextInt());
          }
-         int q = sc.nextInt();
-         for (int i = 0; i < q; i++)
-         {
-            int x = sc.nextInt();
-            int y = sc.nextInt();
-         }
+         listOfList.add(list);
+     }
+     
+     int q = sc.nextInt(); // number of queries that will display the the lists inside of listoflist
+     for (int i = 0; i < q; i++)
+     {
+       int x = sc.nextInt(); 
+       int y = sc.nextInt();
+       
+       
+       // any exceptions have to be handled if the list does not contain a list of integers 
+       try{
+       System.out.println(listOfList.get(x - 1).get(y-1)); // the list size may start at 5 ex. but your starting at 0 index so the get has to be -1
+       } catch (Exception e) {
+         System.out.println("ERROR!");
        }
+     }
+   
    }//main method end
 
 
